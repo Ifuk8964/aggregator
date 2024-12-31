@@ -67,25 +67,5 @@ jobs:
       - name: Collect
         run: python -u subscribe/collect.py --all --overwrite --skip
 
-      - name: Filter Russian Nodes
-        run: |
-          python -c "
-import json
-
-# 读取节点信息
-with open('nodes.json', 'r') as file:
-    nodes = json.load(file)
-
-# 过滤掉包含俄罗斯的节点
-filtered_nodes = [node for node in nodes if 'Russia' not in node.get('name', '') and '俄罗斯' not in node.get('name', '')]
-
-# 写入过滤后的结果
-with open('nodes.json', 'w') as file:
-    json.dump(filtered_nodes, file, ensure_ascii=False, indent=2)
-          "
-
-      - name: Upload to Gist
-        run: python -u subscribe/upload_to_gist.py nodes.json
-
-     - name: Timestamp
+      - name: Timestamp
         run: date
