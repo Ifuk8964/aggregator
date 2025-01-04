@@ -1,6 +1,8 @@
 name: Refresh
 on:
-  # Manually trigger the workflow
+  # performed every two hours
+  schedule:
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 concurrency:
